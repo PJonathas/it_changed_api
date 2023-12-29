@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"net/http"
 	"time"
 
@@ -31,8 +30,6 @@ func getChanges(c *gin.Context) {
 
 func postChanges(c *gin.Context) {
 	var change Change
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
 
 	if err := c.ShouldBindJSON(&change); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -49,6 +46,5 @@ func postChanges(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "change created",
-		"change":  change,
 	})
 }

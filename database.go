@@ -4,7 +4,6 @@ import (
 	"context"
 	"log"
 	"os"
-	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -31,5 +30,7 @@ func init() {
 
 	// Set the database and collection variables
 	db = client.Database("it_changed").Collection("changes")
-	ctx, _ = context.WithTimeout(context.Background(), 10*time.Second)
+
+	// TODO: Handle context
+	ctx = context.TODO()
 }
